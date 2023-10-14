@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public float Gravity => (flapMaxHeight * 2) / flapPeakTime * flapPeakTime;
     public float FlapVelocity => Gravity * flapPeakTime;
+    public Vector3 Velocity => _velocity;
 
     private PlayerInput _input;
     private Vector3 _velocity;
