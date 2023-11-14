@@ -19,4 +19,10 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetFloat("SpeedMultiplier", _player.Velocity.y);
     }
+
+    public void Die()
+    {
+        animator.enabled = false;
+        enabled = false;
+    }
 }

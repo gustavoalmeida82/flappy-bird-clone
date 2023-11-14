@@ -6,6 +6,8 @@ public class PlayerInput : MonoBehaviour
 {
     public bool Press()
     {
+        if (!enabled) return false;
+        
         foreach (var touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
@@ -24,6 +26,8 @@ public class PlayerInput : MonoBehaviour
 
     public bool Release()
     {
+        if (!enabled) return false;
+        
         foreach (var touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Ended)

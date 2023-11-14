@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(PlayerInput))]
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     public float Gravity => (flapMaxHeight * 2) / flapPeakTime * flapPeakTime;
     public float FlapVelocity => Gravity * flapPeakTime;
     public Vector3 Velocity => _velocity;
+    public bool IsDead { get; private set; }
 
     private PlayerInput _input;
     private Vector3 _velocity;
@@ -76,5 +78,30 @@ public class PlayerController : MonoBehaviour
             _zRotation -= downRotationSpeed * Time.deltaTime;
             _zRotation = Mathf.Max(_zRotation, -angleRotation);
         }
+    }
+
+    public void Die()
+    {
+        if (IsDead) return;
+
+        IsDead = true;
+        forwardSpeed = 0;
+        _velocity = Vector3.zero;
+        _input.enabled = false;
+        
+        var animationController = GetComponent<PlayerAnimationController>();
+        if (animationController != null)
+        {
+            animationController.Die();
+        }
+
+        StartCoroutine(TEMP_ReloadGame());
+    }
+    
+    //TODO: Move to Game Mode
+    private IEnumerator TEMP_ReloadGame()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
