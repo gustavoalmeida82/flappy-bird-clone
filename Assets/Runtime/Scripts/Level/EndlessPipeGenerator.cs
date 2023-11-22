@@ -18,8 +18,6 @@ public class EndlessPipeGenerator : MonoBehaviour
     private void Awake()
     {
         _camera = Camera.main;
-        SpawnSinglePipe(transform.position + Vector3.right * initialDistance);
-        SpawnMultiplesPipes(initialSpawnAmount - 1);
     }
 
     private void Update()
@@ -115,5 +113,11 @@ public class EndlessPipeGenerator : MonoBehaviour
         var rightClipPos = _camera.WorldToViewportPoint(right);
         
         return !(leftClipPos.x >= 1 || rightClipPos.x <= 0);
+    }
+
+    public void StartPipeSpawn()
+    {
+        SpawnSinglePipe(transform.position + Vector3.right * initialDistance);
+        SpawnMultiplesPipes(initialSpawnAmount - 1);
     }
 }

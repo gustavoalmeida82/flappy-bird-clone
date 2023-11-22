@@ -8,22 +8,11 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerController : MonoBehaviour
 {
-    [Header("Flap parameters")]
-    [SerializeField] private float flapMaxHeight = 10.0f;
-    [SerializeField] private float flapPeakTime = 5.0f;
-    [Range(0, 1)]
-    [SerializeField] private float flapPercentCancel = 0.1f;
+    [SerializeField] private GameMode gameMode;
     
-    [Header("Rotation")]
-    [Range(0, 180)]
-    [SerializeField] private float angleRotation = 20;
-    [SerializeField] private float downRotationSpeed = 150;
-    
-    [Header("Movement")]
-    [SerializeField] private float forwardSpeed = 10f;
-
-    public float Gravity => (flapMaxHeight * 2) / flapPeakTime * flapPeakTime;
-    public float FlapVelocity => Gravity * flapPeakTime;
+    public PlayerMovementParameters MovementParameters { get; set; }
+    public float Gravity => (MovementParameters.FlapMaxHeight * 2) / MovementParameters.FlapPeakTime * MovementParameters.FlapPeakTime;
+    public float FlapVelocity => Gravity * MovementParameters.FlapPeakTime;
     public Vector3 Velocity => _velocity;
     public bool IsDead { get; private set; }
 
@@ -49,21 +38,26 @@ public class PlayerController : MonoBehaviour
 
     private void ProcessForwardMovement()
     {
-        _velocity.x = forwardSpeed;
+        _velocity.x = MovementParameters.ForwardSpeed;
     }
 
     private void ProcessInput()
     {
         if (_input.Press())
         {
-            _velocity.y = FlapVelocity;
-            _zRotation = angleRotation;
+            Flap();
         }
 
         if (_input.Release() && _velocity.y > 0)
         {
-            _velocity.y *= flapPercentCancel;
+            _velocity.y *= MovementParameters.FlapPercentCancel;
         }
+    }
+
+    public void Flap()
+    {
+        _velocity.y = FlapVelocity;
+        _zRotation = MovementParameters.AngleRotation;
     }
 
     private void ApplyGravity()
@@ -75,8 +69,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_velocity.y < 0)
         {
-            _zRotation -= downRotationSpeed * Time.deltaTime;
-            _zRotation = Mathf.Max(_zRotation, -angleRotation);
+            _zRotation -= MovementParameters.DownRotationSpeed * Time.deltaTime;
+            _zRotation = Mathf.Max(_zRotation, -MovementParameters.AngleRotation);
         }
     }
 
@@ -85,7 +79,6 @@ public class PlayerController : MonoBehaviour
         if (IsDead) return;
 
         IsDead = true;
-        forwardSpeed = 0;
         _velocity = Vector3.zero;
         _input.enabled = false;
         
@@ -94,14 +87,12 @@ public class PlayerController : MonoBehaviour
         {
             animationController.Die();
         }
-
-        StartCoroutine(TEMP_ReloadGame());
+        
+        gameMode.GameOver();
     }
-    
-    //TODO: Move to Game Mode
-    private IEnumerator TEMP_ReloadGame()
+
+    public void ScoreUp()
     {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameMode.ScoreUp();
     }
 }
