@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d75f2235df06ad62fa57e9c4ba7451a2, type: 3}
+  m_Name: MedalsSettings
+  m_EditorClassIdentifier: 
+  <Medals>k__BackingField:
+  - <MedalSprite>k__BackingField: {fileID: 1293773977, guid: 00c3d59c24b97808ea91475869352d81, type: 3}
+    <MinScore>k__BackingField: 10
+  - <MedalSprite>k__BackingField: {fileID: -765858101, guid: 00c3d59c24b97808ea91475869352d81, type: 3}
+    <MinScore>k__BackingField: 20
+  - <MedalSprite>k__BackingField: {fileID: -2072628002, guid: 00c3d59c24b97808ea91475869352d81, type: 3}
+    <MinScore>k__BackingField: 30
+  - <MedalSprite>k__BackingField: {fileID: 917737313, guid: 00c3d59c24b97808ea91475869352d81, type: 3}
+    <MinScore>k__BackingField: 40

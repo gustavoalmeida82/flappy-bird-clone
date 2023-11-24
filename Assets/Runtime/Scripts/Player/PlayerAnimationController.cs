@@ -17,7 +17,8 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("SpeedMultiplier", _player.Velocity.y);
+        var speedMultiplier = _player.Velocity.y <= 0 ? 1 : 2;
+        animator.SetFloat(PlayerAnimationConstants.SpeedMultiplier, speedMultiplier);
     }
 
     public void Die()

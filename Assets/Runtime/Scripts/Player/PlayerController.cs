@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameMode gameMode;
     
     public PlayerMovementParameters MovementParameters { get; set; }
-    public float Gravity => (MovementParameters.FlapMaxHeight * 2) / MovementParameters.FlapPeakTime * MovementParameters.FlapPeakTime;
+    public float Gravity => MovementParameters.FlapMaxHeight == 0 
+        ? 0 
+        : (MovementParameters.FlapMaxHeight * 2) / MovementParameters.FlapPeakTime * MovementParameters.FlapPeakTime;
     public float FlapVelocity => Gravity * MovementParameters.FlapPeakTime;
     public Vector3 Velocity => _velocity;
     public bool IsDead { get; private set; }
@@ -94,5 +96,10 @@ public class PlayerController : MonoBehaviour
     public void ScoreUp()
     {
         gameMode.ScoreUp();
+    }
+
+    public void OnHitGround()
+    {
+        
     }
 }

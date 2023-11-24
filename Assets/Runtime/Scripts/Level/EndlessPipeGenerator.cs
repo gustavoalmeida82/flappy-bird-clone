@@ -117,7 +117,7 @@ public class EndlessPipeGenerator : MonoBehaviour
 
     public void StartPipeSpawn()
     {
-        SpawnSinglePipe(transform.position + Vector3.right * initialDistance);
+        SpawnSinglePipe(player.transform.position + Vector3.right * initialDistance);
         SpawnMultiplesPipes(initialSpawnAmount - 1);
     }
 }

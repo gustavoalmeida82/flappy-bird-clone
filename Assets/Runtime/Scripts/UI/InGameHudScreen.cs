@@ -13,4 +13,9 @@ public class InGameHudScreen : MonoBehaviour
     {
         scoreText.text = gameMode.Score.ToString();
     }
+    
+    public void OnPauseButtonClicked()
+    {
+        gameMode.PauseGame();
+    }
 }

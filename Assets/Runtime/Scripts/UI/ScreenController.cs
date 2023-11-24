@@ -17,10 +17,28 @@ public class ScreenController : MonoBehaviour
         }
     }
 
+    public void OpenWaitGameStartScreen()
+    {
+        var waitGameStartScreen = GetScreenWithComponent(typeof(WaitGameStartScreen));
+        OpenScreen(waitGameStartScreen);
+    }
+
     public void OpenInHudScreen()
     {
         var inHudScreen = GetScreenWithComponent(typeof(InGameHudScreen));
         OpenScreen(inHudScreen);
+    }
+
+    public void OpenGameOverScreen()
+    {
+        var gameOverScreen = GetScreenWithComponent(typeof(GameOverScreen));
+        OpenScreen(gameOverScreen);
+    }
+
+    public void OpenPauseScreen()
+    {
+        var pauseScreen = GetScreenWithComponent(typeof(PauseScreen));
+        OpenScreen(pauseScreen);
     }
 
     private void OpenScreen(GameObject screen)

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286769846909982038}
   - component: {fileID: 4424636722229993361}
+  - component: {fileID: 5568253263478029625}
   m_Layer: 0
   m_Name: GameMode
   m_TagString: Untagged
@@ -45,3 +46,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreIncrement: 1
+  screenController: {fileID: 0}
+  pipeGenerator: {fileID: 0}
+  player: {fileID: 0}
+  gameSaver: {fileID: 5568253263478029625}
+  gameRunningParameters: {fileID: 11400000, guid: 45d87981dc3515d0d9e0b66817c16fd6, type: 2}
+  gameOverParameters: {fileID: 11400000, guid: 5de19a9b10085b0c3895f1af56989619, type: 2}
+  gameWaitingParameters: {fileID: 11400000, guid: 16fee3c7dc446e0cb93623bc186a405f, type: 2}
+--- !u!114 &5568253263478029625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099896514219171757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615355450a05053b0bb43b4edef6fe1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
