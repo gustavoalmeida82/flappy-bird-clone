@@ -9,14 +9,12 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private GameMode gameMode;
+    [SerializeField] private AudioClip flapAudio;
     
     public PlayerMovementParameters MovementParameters { get; set; }
-    public float Gravity => MovementParameters.FlapMaxHeight == 0 
-        ? 0 
-        : (MovementParameters.FlapMaxHeight * 2) / MovementParameters.FlapPeakTime * MovementParameters.FlapPeakTime;
-    public float FlapVelocity => Gravity * MovementParameters.FlapPeakTime;
     public Vector3 Velocity => _velocity;
     public bool IsDead { get; private set; }
+    public bool IsGrounded { get; private set; }
 
     private PlayerInput _input;
     private Vector3 _velocity;
@@ -58,13 +56,14 @@ public class PlayerController : MonoBehaviour
 
     public void Flap()
     {
-        _velocity.y = FlapVelocity;
+        AudioUtility.PlayAudioCue(flapAudio);
+        _velocity.y = MovementParameters.FlapVelocity;
         _zRotation = MovementParameters.AngleRotation;
     }
 
     private void ApplyGravity()
     {
-        _velocity.y -= Gravity * Time.deltaTime;
+        _velocity.y -= MovementParameters.Gravity * Time.deltaTime;
     }
 
     private void ProcessDownRotation()
@@ -100,6 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnHitGround()
     {
-        
+        IsGrounded = true;
+        enabled = false;
     }
 }

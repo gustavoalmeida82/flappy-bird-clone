@@ -19,6 +19,7 @@ public class Ground : MonoBehaviour
         if (other.TryGetComponent<PlayerController>(out var player))
         {
             player.MovementParameters = frozenParameters;
+            player.OnHitGround();
         }
     }
 }

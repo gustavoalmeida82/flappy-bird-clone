@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7023620360823797694}
   - component: {fileID: 8567462758320748162}
   - component: {fileID: 2777159532874979081}
+  - component: {fileID: 1184890340260758626}
   m_Layer: 5
   m_Name: RegularButton
   m_TagString: Untagged
@@ -132,3 +133,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1184890340260758626}
+        m_TargetAssemblyTypeName: AudioCue, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1184890340260758626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065224456986746341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 197ee5d2be73abcec90dfc4e279b0c2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cue: {fileID: 8300000, guid: 1ee99e9ac01bbfa63bf1fde1508ce93d, type: 3}

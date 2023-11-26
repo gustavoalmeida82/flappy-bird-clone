@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7812982994657867523}
   - component: {fileID: 8518147701023451469}
   - component: {fileID: 8209601728364325783}
+  - component: {fileID: -8205224696449103497}
   m_Layer: 0
   m_Name: PipeBase
   m_TagString: Untagged
@@ -94,6 +95,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   headTransform: {fileID: 4132179782746619185}
   tailTransform: {fileID: 7529746100613308452}
+--- !u!114 &-8205224696449103497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265354165456493170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f67e96703de5786bb5e5c1584aae19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitAudio: {fileID: 8300000, guid: 2a04c1efc2e24fb558e27450b08ca84e, type: 3}
 --- !u!1 &5490960400086146542
 GameObject:
   m_ObjectHideFlags: 0

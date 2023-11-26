@@ -22,4 +22,10 @@ public class PlayerMovementParameters : ScriptableObject
 
     [field: SerializeField] 
     public float ForwardSpeed { get; private set; } = 2;
+    
+    public float Gravity => FlapMaxHeight == 0 
+        ? 0 
+        : (FlapMaxHeight * 2) / FlapPeakTime * FlapPeakTime;
+    
+    public float FlapVelocity => Gravity * FlapPeakTime;
 }

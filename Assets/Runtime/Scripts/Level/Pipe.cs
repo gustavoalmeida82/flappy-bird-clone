@@ -17,14 +17,6 @@ public class Pipe : MonoBehaviour
             : _spriteRenderer;
 
     private SpriteRenderer _spriteRenderer;
-    
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.TryGetComponent<PlayerController>(out var player))
-        {
-            player.Die();
-        }
-    }
 
     private void OnDrawGizmos()
     {

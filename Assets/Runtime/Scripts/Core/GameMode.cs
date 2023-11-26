@@ -21,8 +21,18 @@ public class GameMode : MonoBehaviour
     [SerializeField] private PlayerMovementParameters gameOverParameters;
     [SerializeField] private PlayerMovementParameters gameWaitingParameters;
 
+    [Header("Audio")] 
+    [SerializeField] private AudioService audioService;
+
+    [SerializeField] private AudioClip fallAudio;
+
     public int Score { get; private set; } = 0;
     public int BestScore => gameSaver.CurrentSave.HighestScore < Score ? Score : gameSaver.CurrentSave.HighestScore;
+
+    private void Awake()
+    {
+        AudioUtility.AudioService = audioService;
+    }
 
     private void Start()
     {
@@ -51,7 +61,17 @@ public class GameMode : MonoBehaviour
         {
             HighestScore = BestScore
         });
+        StartCoroutine(GameOverCor());
+    }
+
+    private IEnumerator GameOverCor()
+    {
         screenController.OpenGameOverScreen();
+        yield return new WaitForSeconds(0.3f);
+        if (!player.IsGrounded)
+        {
+            AudioUtility.PlayAudioCue(fallAudio);
+        }
     }
     
     public void ScoreUp()

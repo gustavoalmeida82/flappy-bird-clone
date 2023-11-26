@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22e773ddc4906e1e3ad7a1293e41a226, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  frozenParameters: {fileID: 0}
 --- !u!114 &3606482022104818957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,3 +157,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f67e96703de5786bb5e5c1584aae19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitAudio: {fileID: 8300000, guid: 2a04c1efc2e24fb558e27450b08ca84e, type: 3}
