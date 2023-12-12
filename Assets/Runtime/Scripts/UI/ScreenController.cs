@@ -9,7 +9,7 @@ public class ScreenController : MonoBehaviour
 
     private GameObject _currentScreen;
 
-    private void Awake()
+    public void DisableAllScreens()
     {
         foreach (var screen in screens)
         {

@@ -23,18 +23,17 @@ public class GameMode : MonoBehaviour
 
     [Header("Audio")] 
     [SerializeField] private AudioService audioService;
-
     [SerializeField] private AudioClip fallAudio;
+    [SerializeField] private float fallAudioDelay = 0.3f;
+    
+    [Header("Fade Effect")]
+    [SerializeField] private FadeScreen fadeScreen;
+    [SerializeField] private float fadeTime = 0.5f;
 
     public int Score { get; private set; } = 0;
     public int BestScore => gameSaver.CurrentSave.HighestScore < Score ? Score : gameSaver.CurrentSave.HighestScore;
 
     private void Awake()
-    {
-        AudioUtility.AudioService = audioService;
-    }
-
-    private void Start()
     {
         WaitGameStart();
     }
@@ -43,6 +42,10 @@ public class GameMode : MonoBehaviour
     {
         gameSaver.LoadGame();
         player.MovementParameters = gameWaitingParameters;
+        AudioUtility.AudioService = audioService;
+
+        StartCoroutine(fadeScreen.FadeOut(fadeTime, Color.black));
+        screenController.DisableAllScreens();
         screenController.OpenWaitGameStartScreen();
     }
 
@@ -61,13 +64,14 @@ public class GameMode : MonoBehaviour
         {
             HighestScore = BestScore
         });
+        StartCoroutine(fadeScreen.Flash());
         StartCoroutine(GameOverCor());
     }
 
     private IEnumerator GameOverCor()
     {
         screenController.OpenGameOverScreen();
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(fallAudioDelay);
         if (!player.IsGrounded)
         {
             AudioUtility.PlayAudioCue(fallAudio);
@@ -93,6 +97,12 @@ public class GameMode : MonoBehaviour
 
     public void ReloadGame()
     {
+        StartCoroutine(ReloadGameCor());
+    }
+
+    public IEnumerator ReloadGameCor()
+    {
+        yield return fadeScreen.FadeIn(fadeTime, Color.black);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
